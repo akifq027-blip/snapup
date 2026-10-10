@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#171714">
+    <meta name="description" content="Explore the SnapUp Studios photography portfolio. Discover a curated collection of photographs, portraits, celebrations, events and visual stories.">
+
+    <title>Portfolio | SnapUp Studios</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="portfolio.js" defer></script>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        <p>PHOTOGRAPHY · FILMS · STORIES</p>
+        <a href="contact.html">Let's create something memorable <span>↗</span></a>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="nav-container">
+
+            <a class="brand" href="index.html" aria-label="SnapUp Studios homepage">
+                <span class="brand-symbol">S<span>U</span></span>
+                <span class="brand-name">
+                    SNAPUP
+                    <small>STUDIOS</small>
+                </span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primary-navigation">
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link active" href="portfolio.html" aria-current="page">Portfolio</a>
+                <a class="nav-link" href="services.html">Services</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-project" href="contact.html">
+                    Start a Project <span>↗</span>
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- PORTFOLIO INTRO -->
+        <section class="portfolio-hero">
+            <div class="page-container portfolio-hero-inner">
+
+                <div class="section-label">
+                    <span class="eyebrow-line"></span>
+                    THE SNAPUP COLLECTION
+                </div>
+
+                <h1>
+                    Every frame tells<br>
+                    <span>a different story.</span>
+                </h1>
+
+                <div class="portfolio-intro-bottom">
+                    <p>
+                        A collection of moments, perspectives and details
+                        captured through our creative lens. Explore the
+                        photographs and discover the stories within them.
+                    </p>
+
+                    <div class="portfolio-count-block">
+                        <span class="portfolio-count-number" id="portfolio-total">21</span>
+                        <span class="portfolio-count-label">PHOTOGRAPHS</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="portfolio-section section-padding">
+            <div class="page-container">
+
+                <div class="gallery-toolbar">
+
+                    <div class="section-label">
+                        <span class="eyebrow-line"></span>
+                        SELECTED PHOTOGRAPHS
+                    </div>
+
+                    <p class="gallery-results" aria-live="polite">
+                        Showing <span id="visible-count">21</span> photographs
+                    </p>
+
+                </div>
+
+                <!-- FILTERS -->
+                <div class="gallery-filters" role="group" aria-label="Filter photographs by category">
+
+                    <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">
+                        All Work <span>21</span>
+                    </button>
+
+                    <button class="filter-button" type="button" data-filter="people" aria-pressed="false">
+                        People
+                    </button>
+
+                    <button class="filter-button" type="button" data-filter="events" aria-pressed="false">
+                        Events
+                    </button>
+
+                    <button class="filter-button" type="button" data-filter="portraits" aria-pressed="false">
+                        Portraits
+                    </button>
+
+                    <button class="filter-button" type="button" data-filter="nature" aria-pressed="false">
+                        Nature
+                    </button>
+
+                    <button class="filter-button" type="button" data-filter="celebrations" aria-pressed="false">
+                        Celebrations
+                    </button>
+
+                </div>
+
+                <!--
+                    Category assignments are editable.
+                    Until the actual photographs have been inspected,
+                    the initial categories remain neutral placeholders.
+                    Change data-category values to match the real images.
+                -->
+
+                <div class="portfolio-grid" id="portfolio-grid">
+
+                    <!-- PHOTO 01 -->
+                    <article class="gallery-item gallery-tall" data-category="people" data-number="01">
+                        <button class="gallery-image-button" type="button" data-image-index="0" aria-label="Open photograph 01 in full-screen viewer">
+                            <img src="images/photo-01.jpg" alt="Customer photograph 01 from the SnapUp Studios collection" loading="eager" decoding="async" fetchpriority="high">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 01</span>
+                                <h2>In the Moment</h2>
+                            </div>
+                            <span class="gallery-category">People</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 02 -->
+                    <article class="gallery-item" data-category="events" data-number="02">
+                        <button class="gallery-image-button" type="button" data-image-index="1" aria-label="Open photograph 02 in full-screen viewer">
+                            <img src="images/photo-02.jpg" alt="Customer photograph 02 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 02</span>
+                                <h2>Moments Together</h2>
+                            </div>
+                            <span class="gallery-category">Events</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 03 -->
+                    <article class="gallery-item gallery-wide" data-category="portraits" data-number="03">
+                        <button class="gallery-image-button" type="button" data-image-index="2" aria-label="Open photograph 03 in full-screen viewer">
+                            <img src="images/photo-03.jpg" alt="Customer photograph 03 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 03</span>
+                                <h2>Quiet Expressions</h2>
+                            </div>
+                            <span class="gallery-category">Portraits</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 04 -->
+                    <article class="gallery-item" data-category="nature" data-number="04">
+                        <button class="gallery-image-button" type="button" data-image-index="3" aria-label="Open photograph 04 in full-screen viewer">
+                            <img src="images/photo-04.jpg" alt="Customer photograph 04 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 04</span>
+                                <h2>Natural Perspectives</h2>
+                            </div>
+                            <span class="gallery-category">Nature</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 05 -->
+                    <article class="gallery-item gallery-tall" data-category="celebrations" data-number="05">
+                        <button class="gallery-image-button" type="button" data-image-index="4" aria-label="Open photograph 05 in full-screen viewer">
+                            <img src="images/photo-05.jpg" alt="Customer photograph 05 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 05</span>
+                                <h2>Made to Remember</h2>
+                            </div>
+                            <span class="gallery-category">Celebrations</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 06 -->
+                    <article class="gallery-item" data-category="people" data-number="06">
+                        <button class="gallery-image-button" type="button" data-image-index="5" aria-label="Open photograph 06 in full-screen viewer">
+                            <img src="images/photo-06.jpg" alt="Customer photograph 06 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 06</span>
+                                <h2>Everyday Stories</h2>
+                            </div>
+                            <span class="gallery-category">People</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 07 -->
+                    <article class="gallery-item gallery-wide" data-category="events" data-number="07">
+                        <button class="gallery-image-button" type="button" data-image-index="6" aria-label="Open photograph 07 in full-screen viewer">
+                            <img src="images/photo-07.jpg" alt="Customer photograph 07 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 07</span>
+                                <h2>Scenes Unfolding</h2>
+                            </div>
+                            <span class="gallery-category">Events</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 08 -->
+                    <article class="gallery-item" data-category="portraits" data-number="08">
+                        <button class="gallery-image-button" type="button" data-image-index="7" aria-label="Open photograph 08 in full-screen viewer">
+                            <img src="images/photo-08.jpg" alt="Customer photograph 08 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 08</span>
+                                <h2>Character in Focus</h2>
+                            </div>
+                            <span class="gallery-category">Portraits</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 09 -->
+                    <article class="gallery-item" data-category="nature" data-number="09">
+                        <button class="gallery-image-button" type="button" data-image-index="8" aria-label="Open photograph 09 in full-screen viewer">
+                            <img src="images/photo-09.jpg" alt="Customer photograph 09 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 09</span>
+                                <h2>Outside the Ordinary</h2>
+                            </div>
+                            <span class="gallery-category">Nature</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 10 -->
+                    <article class="gallery-item gallery-tall" data-category="celebrations" data-number="10">
+                        <button class="gallery-image-button" type="button" data-image-index="9" aria-label="Open photograph 10 in full-screen viewer">
+                            <img src="images/photo-10.jpg" alt="Customer photograph 10 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 10</span>
+                                <h2>Little Celebrations</h2>
+                            </div>
+                            <span class="gallery-category">Celebrations</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 11 -->
+                    <article class="gallery-item" data-category="people" data-number="11">
+                        <button class="gallery-image-button" type="button" data-image-index="10" aria-label="Open photograph 11 in full-screen viewer">
+                            <img src="images/photo-11.jpg" alt="Customer photograph 11 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 11</span>
+                                <h2>Human Connections</h2>
+                            </div>
+                            <span class="gallery-category">People</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 12 -->
+                    <article class="gallery-item gallery-wide" data-category="events" data-number="12">
+                        <button class="gallery-image-button" type="button" data-image-index="11" aria-label="Open photograph 12 in full-screen viewer">
+                            <img src="images/photo-12.jpg" alt="Customer photograph 12 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 12</span>
+                                <h2>Atmosphere & Energy</h2>
+                            </div>
+                            <span class="gallery-category">Events</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 13 -->
+                    <article class="gallery-item" data-category="portraits" data-number="13">
+                        <button class="gallery-image-button" type="button" data-image-index="12" aria-label="Open photograph 13 in full-screen viewer">
+                            <img src="images/photo-13.jpg" alt="Customer photograph 13 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 13</span>
+                                <h2>A Personal Perspective</h2>
+                            </div>
+                            <span class="gallery-category">Portraits</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 14 -->
+                    <article class="gallery-item gallery-tall" data-category="nature" data-number="14">
+                        <button class="gallery-image-button" type="button" data-image-index="13" aria-label="Open photograph 14 in full-screen viewer">
+                            <img src="images/photo-14.jpg" alt="Customer photograph 14 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 14</span>
+                                <h2>Nature in Detail</h2>
+                            </div>
+                            <span class="gallery-category">Nature</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 15 -->
+                    <article class="gallery-item" data-category="celebrations" data-number="15">
+                        <button class="gallery-image-button" type="button" data-image-index="14" aria-label="Open photograph 15 in full-screen viewer">
+                            <img src="images/photo-15.jpg" alt="Customer photograph 15 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 15</span>
+                                <h2>Joy in Every Frame</h2>
+                            </div>
+                            <span class="gallery-category">Celebrations</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 16 -->
+                    <article class="gallery-item gallery-wide" data-category="people" data-number="16">
+                        <button class="gallery-image-button" type="button" data-image-index="15" aria-label="Open photograph 16 in full-screen viewer">
+                            <img src="images/photo-16.jpg" alt="Customer photograph 16 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 16</span>
+                                <h2>Unscripted Moments</h2>
+                            </div>
+                            <span class="gallery-category">People</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 17 -->
+                    <article class="gallery-item" data-category="events" data-number="17">
+                        <button class="gallery-image-button" type="button" data-image-index="16" aria-label="Open photograph 17 in full-screen viewer">
+                            <img src="images/photo-17.jpg" alt="Customer photograph 17 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 17</span>
+                                <h2>Stories in Motion</h2>
+                            </div>
+                            <span class="gallery-category">Events</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 18 -->
+                    <article class="gallery-item gallery-tall" data-category="portraits" data-number="18">
+                        <button class="gallery-image-button" type="button" data-image-index="17" aria-label="Open photograph 18 in full-screen viewer">
+                            <img src="images/photo-18.jpg" alt="Customer photograph 18 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 18</span>
+                                <h2>Beyond the Surface</h2>
+                            </div>
+                            <span class="gallery-category">Portraits</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 19 -->
+                    <article class="gallery-item" data-category="nature" data-number="19">
+                        <button class="gallery-image-button" type="button" data-image-index="18" aria-label="Open photograph 19 in full-screen viewer">
+                            <img src="images/photo-19.jpg" alt="Customer photograph 19 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 19</span>
+                                <h2>Light & Perspective</h2>
+                            </div>
+                            <span class="gallery-category">Nature</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 20 -->
+                    <article class="gallery-item gallery-wide" data-category="celebrations" data-number="20">
+                        <button class="gallery-image-button" type="button" data-image-index="19" aria-label="Open photograph 20 in full-screen viewer">
+                            <img src="images/photo-20.jpg" alt="Customer photograph 20 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 20</span>
+                                <h2>Worth Celebrating</h2>
+                            </div>
+                            <span class="gallery-category">Celebrations</span>
+                        </div>
+                    </article>
+
+                    <!-- PHOTO 21 -->
+                    <article class="gallery-item" data-category="people" data-number="21">
+                        <button class="gallery-image-button" type="button" data-image-index="20" aria-label="Open photograph 21 in full-screen viewer">
+                            <img src="images/photo-21.jpg" alt="Customer photograph 21 from the SnapUp Studios collection" loading="lazy" decoding="async">
+                            <span class="gallery-open-icon" aria-hidden="true">↗</span>
+                        </button>
+                        <div class="gallery-caption">
+                            <div>
+                                <span class="gallery-number">FRAME 21</span>
+                                <h2>The Final Frame</h2>
+                            </div>
+                            <span class="gallery-category">People</span>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- EMPTY STATE -->
+                <p class="gallery-empty" id="gallery-empty" hidden>
+                    No photographs are assigned to this category yet.
+                </p>
+
+                <div class="gallery-bottom-note">
+                    <span class="eyebrow-line"></span>
+                    <p>21 FRAMES. COUNTLESS WAYS TO SEE THE WORLD.</p>
+                    <span class="eyebrow-line"></span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PORTFOLIO CTA -->
+        <section class="contact-cta">
+            <div class="cta-decoration" aria-hidden="true">SU.</div>
+
+            <div class="page-container cta-content">
+
+                <div class="section-label">
+                    <span class="eyebrow-line"></span>
+                    YOUR STORY STARTS HERE
+                </div>
+
+                <h2>
+                    Have something<br>
+                    <span>worth capturing?</span>
+                </h2>
+
+                <p>
+                    Tell us about your project, your occasion or the
+                    idea you've been thinking about. Let's make it happen.
+                </p>
+
+                <a class="button button-light" href="contact.html">
+                    Start a Project <span>↗</span>
+                </a>
+
+                <div class="cta-contact-details">
+                    <a href="tel:+919390350802">+91 93903 50802</a>
+                    <span class="cta-separator">/</span>
+                    <a href="mailto:snapupstudio.in@gmail.com">snapupstudio.in@gmail.com</a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="page-container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand-block">
+                    <a class="brand footer-brand" href="index.html" aria-label="SnapUp Studios homepage">
+                        <span class="brand-symbol">S<span>U</span></span>
+                        <span class="brand-name">
+                            SNAPUP
+                            <small>STUDIOS</small>
+                        </span>
+                    </a>
+
+                    <p>
+                        Thoughtful photography.<br>
+                        Timeless visual stories.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>EXPLORE</h3>
+                    <a href="index.html">Home</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>GET IN TOUCH</h3>
+                    <a href="tel:+919390350802">9390350802</a>
+                    <a href="mailto:snapupstudio.in@gmail.com">snapupstudio.in@gmail.com</a>
+                    <a href="https://wa.me/919390350802" target="_blank" rel="noopener noreferrer">
+                        Chat on WhatsApp ↗
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span data-current-year>2026</span> SnapUp Studios. All rights reserved.</p>
+                <p>CRAFTED WITH A CREATIVE EYE.</p>
+                <a href="#main">Back to top ↑</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- FULL-SCREEN LIGHTBOX -->
+    <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Photograph viewer"
+        aria-hidden="true"
+        hidden>
+
+        <div class="lightbox-topbar">
+
+            <div class="lightbox-brand">
+                <span class="lightbox-brand-mark">SU.</span>
+                <span>SNAPUP STUDIOS</span>
+            </div>
+
+            <div class="lightbox-counter" aria-live="polite">
+                <span id="lightbox-current">01</span>
+                <span class="lightbox-counter-divider">/</span>
+                <span id="lightbox-total">21</span>
+            </div>
+
+            <button class="lightbox-close" type="button" aria-label="Close photograph viewer">
+                <span aria-hidden="true">×</span>
+            </button>
+
+        </div>
+
+        <button class="lightbox-arrow lightbox-previous" type="button" aria-label="Previous photograph">
+            <span aria-hidden="true">←</span>
+        </button>
+
+        <div class="lightbox-stage" id="lightbox-stage">
+
+            <img
+                class="lightbox-image"
+                id="lightbox-image"
+                src="images/photo-01.jpg"
+                alt="">
+
+        </div>
+
+        <button class="lightbox-arrow lightbox-next" type="button" aria-label="Next photograph">
+            <span aria-hidden="true">→</span>
+        </button>
+
+        <div class="lightbox-caption">
+            <div>
+                <span class="lightbox-caption-label">CURRENT FRAME</span>
+                <h2 id="lightbox-title">In the Moment</h2>
+            </div>
+
+            <p id="lightbox-category">People</p>
+        </div>
+
+        <p class="lightbox-keyboard-hint">
+            USE ← → TO NAVIGATE · ESC TO CLOSE
+        </p>
+
+    </div>
+
+</body>
+</html>

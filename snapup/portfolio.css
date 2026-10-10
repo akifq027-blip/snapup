@@ -1,0 +1,453 @@
+
+/* =========================================
+   SNAPUP STUDIOS
+   Portfolio Gallery and Lightbox
+========================================= */
+
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const gallery = document.querySelector("#portfolio-grid");
+
+    if (!gallery) {
+        return;
+    }
+
+    const galleryItems = Array.from(
+        gallery.querySelectorAll(".gallery-item")
+    );
+
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const visibleCount = document.querySelector("#visible-count");
+    const portfolioTotal = document.querySelector("#portfolio-total");
+    const emptyMessage = document.querySelector("#gallery-empty");
+
+    const lightbox = document.querySelector("#lightbox");
+    const lightboxImage = document.querySelector("#lightbox-image");
+    const lightboxCurrent = document.querySelector("#lightbox-current");
+    const lightboxTotal = document.querySelector("#lightbox-total");
+    const lightboxTitle = document.querySelector("#lightbox-title");
+    const lightboxCategory = document.querySelector("#lightbox-category");
+    const lightboxStage = document.querySelector("#lightbox-stage");
+
+    const closeButton = document.querySelector(".lightbox-close");
+    const previousButton = document.querySelector(".lightbox-previous");
+    const nextButton = document.querySelector(".lightbox-next");
+
+    const allImages = galleryItems.map((item) => {
+        const image = item.querySelector("img");
+        const title = item.querySelector(".gallery-caption h2");
+        const category = item.querySelector(".gallery-category");
+        const button = item.querySelector(".gallery-image-button");
+
+        return {
+            item,
+            image,
+            title: title ? title.textContent.trim() : "Photograph",
+            category: category ? category.textContent.trim() : "Photography",
+            button,
+            source: image ? image.getAttribute("src") : "",
+            alt: image ? image.getAttribute("alt") : ""
+        };
+    });
+
+    let activeFilter = "all";
+    let visibleImages = [...allImages];
+    let currentIndex = 0;
+    let lastFocusedElement = null;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    const supportsInert = "inert" in HTMLElement.prototype;
+
+    /*
+     * Save a stable, original image list.
+     * The gallery filter changes visibility only; it does not
+     * remove photographs from the lightbox's source data.
+     */
+
+    if (portfolioTotal) {
+        portfolioTotal.textContent = String(allImages.length);
+    }
+
+    if (lightboxTotal) {
+        lightboxTotal.textContent = String(allImages.length).padStart(2, "0");
+    }
+
+
+    /* 1. CATEGORY FILTERS */
+
+    const applyFilter = (filter) => {
+
+        activeFilter = filter;
+
+        visibleImages = allImages.filter((photo) => {
+            return filter === "all" || photo.item.dataset.category === filter;
+        });
+
+        allImages.forEach((photo) => {
+
+            const matches =
+                filter === "all" || photo.item.dataset.category === filter;
+
+            photo.item.hidden = !matches;
+
+        });
+
+        filterButtons.forEach((button) => {
+
+            const isActive = button.dataset.filter === filter;
+
+            button.classList.toggle("active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+
+        });
+
+        if (visibleCount) {
+            visibleCount.textContent = String(visibleImages.length);
+        }
+
+        if (emptyMessage) {
+            emptyMessage.hidden = visibleImages.length !== 0;
+        }
+
+        /*
+         * When a category is selected, the lightbox can only
+         * navigate through photographs in that category.
+         */
+
+        if (lightbox && !lightbox.hidden) {
+            if (visibleImages.length === 0) {
+                closeLightbox();
+            } else {
+                currentIndex = Math.min(
+                    currentIndex,
+                    visibleImages.length - 1
+                );
+                renderLightbox();
+            }
+        }
+
+    };
+
+    filterButtons.forEach((button) => {
+
+        button.addEventListener("click", () => {
+            applyFilter(button.dataset.filter || "all");
+        });
+
+    });
+
+
+    /* 2. LIGHTBOX DISPLAY */
+
+    const renderLightbox = () => {
+
+        const photo = visibleImages[currentIndex];
+
+        if (!photo || !lightboxImage) {
+            return;
+        }
+
+        /*
+         * Update the image only if its source has changed.
+         * The selected image retains its real local file path.
+         */
+
+        if (lightboxImage.getAttribute("src") !== photo.source) {
+            lightboxImage.src = photo.source;
+        }
+
+        lightboxImage.alt = photo.alt || photo.title;
+
+        if (lightboxCurrent) {
+            lightboxCurrent.textContent = String(currentIndex + 1).padStart(2, "0");
+        }
+
+        if (lightboxTotal) {
+            lightboxTotal.textContent = String(visibleImages.length).padStart(2, "0");
+        }
+
+        if (lightboxTitle) {
+            lightboxTitle.textContent = photo.title;
+        }
+
+        if (lightboxCategory) {
+            lightboxCategory.textContent = photo.category;
+        }
+
+        const noNavigation = visibleImages.length <= 1;
+
+        if (previousButton) {
+            previousButton.disabled = noNavigation;
+        }
+
+        if (nextButton) {
+            nextButton.disabled = noNavigation;
+        }
+
+    };
+
+    const openLightbox = (index) => {
+
+        if (!visibleImages[index] || !lightbox) {
+            return;
+        }
+
+        lastFocusedElement = document.activeElement;
+        currentIndex = index;
+
+        lightbox.hidden = false;
+        lightbox.setAttribute("aria-hidden", "false");
+
+        document.body.classList.add("lightbox-open");
+
+        if (supportsInert) {
+            document.querySelector("header")?.setAttribute("inert", "");
+            document.querySelector("main")?.setAttribute("inert", "");
+            document.querySelector("footer")?.setAttribute("inert", "");
+        }
+
+        renderLightbox();
+
+        closeButton?.focus();
+
+    };
+
+    const closeLightbox = () => {
+
+        if (!lightbox || lightbox.hidden) {
+            return;
+        }
+
+        lightbox.hidden = true;
+        lightbox.setAttribute("aria-hidden", "true");
+
+        document.body.classList.remove("lightbox-open");
+
+        if (supportsInert) {
+            document.querySelector("header")?.removeAttribute("inert");
+            document.querySelector("main")?.removeAttribute("inert");
+            document.querySelector("footer")?.removeAttribute("inert");
+        }
+
+        if (
+            lastFocusedElement &&
+            document.contains(lastFocusedElement)
+        ) {
+            lastFocusedElement.focus();
+        }
+
+    };
+
+    const showPrevious = () => {
+
+        if (visibleImages.length <= 1) {
+            return;
+        }
+
+        currentIndex =
+            (currentIndex - 1 + visibleImages.length) %
+            visibleImages.length;
+
+        renderLightbox();
+
+    };
+
+    const showNext = () => {
+
+        if (visibleImages.length <= 1) {
+            return;
+        }
+
+        currentIndex = (currentIndex + 1) % visibleImages.length;
+
+        renderLightbox();
+
+    };
+
+
+    /* 3. OPEN VIEWER FROM GALLERY */
+
+    galleryItems.forEach((item) => {
+
+        const button = item.querySelector(".gallery-image-button");
+
+        if (!button) {
+            return;
+        }
+
+        button.addEventListener("click", () => {
+
+            const imageIndex = Number(button.dataset.imageIndex);
+
+            const photoIndex = visibleImages.findIndex((photo) => {
+                return allImages.indexOf(photo) === imageIndex;
+            });
+
+            if (photoIndex !== -1) {
+                openLightbox(photoIndex);
+            }
+
+        });
+
+    });
+
+
+    /* 4. VIEWER CONTROLS */
+
+    closeButton?.addEventListener("click", closeLightbox);
+    previousButton?.addEventListener("click", showPrevious);
+    nextButton?.addEventListener("click", showNext);
+
+    /*
+     * Clicking the dark backdrop closes the viewer.
+     * Clicking the photograph or navigation controls does not.
+     */
+
+    lightbox?.addEventListener("click", (event) => {
+
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+
+    });
+
+    lightboxStage?.addEventListener("click", (event) => {
+
+        if (event.target === lightboxStage) {
+            closeLightbox();
+        }
+
+    });
+
+
+    /* 5. KEYBOARD NAVIGATION */
+
+    document.addEventListener("keydown", (event) => {
+
+        if (!lightbox || lightbox.hidden) {
+            return;
+        }
+
+        switch (event.key) {
+
+            case "Escape":
+                event.preventDefault();
+                closeLightbox();
+                break;
+
+            case "ArrowLeft":
+                event.preventDefault();
+                showPrevious();
+                break;
+
+            case "ArrowRight":
+                event.preventDefault();
+                showNext();
+                break;
+
+            case "Tab": {
+
+                /*
+                 * Keep keyboard focus inside the modal while open.
+                 */
+
+                const focusable = Array.from(
+                    lightbox.querySelectorAll(
+                        'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+                    )
+                ).filter((element) => {
+                    return !element.hasAttribute("hidden");
+                });
+
+                if (focusable.length === 0) {
+                    event.preventDefault();
+                    return;
+                }
+
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (
+                    !event.shiftKey &&
+                    document.activeElement === last
+                ) {
+                    event.preventDefault();
+                    first.focus();
+                }
+
+                break;
+
+            }
+
+        }
+
+    });
+
+
+    /* 6. TOUCH SWIPE NAVIGATION */
+
+    lightboxStage?.addEventListener("touchstart", (event) => {
+
+        if (event.touches.length !== 1) {
+            return;
+        }
+
+        touchStartX = event.touches[0].clientX;
+        touchStartY = event.touches[0].clientY;
+
+        touchEndX = touchStartX;
+        touchEndY = touchStartY;
+
+    }, { passive: true });
+
+    lightboxStage?.addEventListener("touchmove", (event) => {
+
+        if (event.touches.length !== 1) {
+            return;
+        }
+
+        touchEndX = event.touches[0].clientX;
+        touchEndY = event.touches[0].clientY;
+
+    }, { passive: true });
+
+    lightboxStage?.addEventListener("touchend", () => {
+
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        const horizontalSwipe = Math.abs(deltaX) > 55;
+        const mostlyHorizontal =
+            Math.abs(deltaX) > Math.abs(deltaY) * 1.25;
+
+        if (horizontalSwipe && mostlyHorizontal) {
+
+            if (deltaX < 0) {
+                showNext();
+            } else {
+                showPrevious();
+            }
+
+        }
+
+        touchStartX = 0;
+        touchStartY = 0;
+        touchEndX = 0;
+        touchEndY = 0;
+
+    }, { passive: true });
+
+
+    /* 7. INITIAL STATE */
+
+    applyFilter("all");
+
+});
